@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cotizador de criptomonedas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+  <script src="app.js"></script>
+</head>
+<body onload="criptoOptions()">
+  <div class="container">
+    <div class="row">
+        <h1>Cotización de criptomonedas en tiempor real</h1>
+        <form>
+          <div id="msj-error"></div>
+          <label>Elige una moneda</label>
+          <select
+            onChange="cotizarMoneda()"
+            id="moneda">
+              <option value=""> Elige la moneda </option>
+              <option value="USD">Dolar USA</option>
+              <option value="EUR">Euro</option>
+              <option value="GBP">Libra Esterlina</option>
+              <option value="COP">Peso colombiano</option>
+          </select>
+          <label>Elige una criptomoneda</label>
+          <select
+            onChange="cotizarMoneda()"
+            id="criptomoneda">
+          </select>
+          <button 
+            type="button"
+            class="boton"
+            onclick="cotizarMoneda()">
+            Calcular
+          </button>
+        </form>
+        <div class="resultado" id="divResultado"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
