@@ -6,22 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cotizador de criptomonedas</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="assets/bitcoinfav.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
   <script src="app.js"></script>
 </head>
-<body onload="criptoOptions()">
+<body onload="cryptoOptions()">
   <div class="container">
     <div class="row">
-        <h1>Cotización de criptomonedas en tiempor real</h1>
+        <h1>Cotización de criptomonedas <br>en tiempo real</h1>
         <form>
-          <div id="msj-error"></div>
+         
           <label>Elige una moneda</label>
           <select
-            onChange="cotizarMoneda()"
-            id="moneda">
-              <option value=""> Elige la moneda </option>
+            onChange="quoteCurrency()"
+            id="currency">
+              <option value=""> Selecciona </option>
               <option value="USD">Dolar USA</option>
               <option value="EUR">Euro</option>
               <option value="GBP">Libra Esterlina</option>
@@ -29,17 +30,18 @@
           </select>
           <label>Elige una criptomoneda</label>
           <select
-            onChange="cotizarMoneda()"
-            id="criptomoneda">
+            onChange="quoteCurrency()"
+            id="cryptocurrency">
           </select>
           <button 
             type="button"
-            class="boton"
-            onclick="cotizarMoneda()">
+            class="button"
+            onclick="quoteCurrency()">
             Calcular
           </button>
+          <div id="msj-error"></div>
         </form>
-        <div class="resultado" id="divResultado"></div>
+        <div class="results" id="divResults"></div>
       </div>
     </div>
   </div>

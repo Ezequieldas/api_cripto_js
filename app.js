@@ -1,56 +1,58 @@
-const criptoOptions = async () => {
+const cryptoOptions = async () => {
   const url ="https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD";
 
-  const respuesta = await fetch (url);
-  const resultado = await respuesta.json();
+  const response = await fetch (url);
+  const results = await response.json();
 
-  let selectCripto = document.querySelector("#criptomoneda");
-  let opcionesHTML=`<option value=""> Selecciona </option>`;
+  let selectcrypto = document.querySelector("#cryptocurrency");
+  let htmlOptions=`<option value=""> Selecciona </option>`;
 
-  resultado.Data.map(opcion => {
-    opcionesHTML += `<option value="${opcion.CoinInfo.Name}">${opcion.CoinInfo.FullName}</option>`;
+  results.Data.map(option => {
+    htmlOptions += `<option value="${option.CoinInfo.Name}">${option.CoinInfo.FullName}</option>`;
   });
 
-  selectCripto.innerHTML=opcionesHTML;
+  selectcrypto.innerHTML=htmlOptions;
 };
 
-const cotizarMoneda = () => {
-  const moneda=document.querySelector("#moneda").value;
-  const cripto=document.querySelector("#criptomoneda").value;
+const quoteCurrency = () => {
+  const currency=document.querySelector("#currency").value;
+  const crypto=document.querySelector("#cryptocurrency").value;
 
-  if (moneda === '' || cripto === '') {
-    mostrarError("#msj-error","DEBES ESCOGER DOS OPCIONES PARA COMPARAR");
-    return;
+  if (currency === '' || crypto === '') {
+    setTimeout (() => {
+    showError("#msj-error","ESCOGE DOS OPCIONES PARA COMPARAR");
+    return;},3000)
   }
+  
 
-  cotizar(moneda, cripto);
+  quote(currency, crypto);
 }
 
-const cotizar = async (moneda, cripto) => {
-  const url= `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cripto}&tsyms=${moneda}`
+const quote = async (currency, crypto) => {
+  const url= `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${currency}`
   
-  const respuesta = await fetch (url);
-  let resultado = await respuesta.json();
+  const response = await fetch (url);
+  let results = await response.json();
 
-  resultado = resultado.DISPLAY[cripto][moneda];
-  // console.log(resultado)
+  results = results.DISPLAY[crypto][currency];
+  // console.log(results)
 
-  let divResultado=document.querySelector('#divResultado');
+  let divResults=document.querySelector('#divResults');
 
-  divResultado.innerHTML = `<div style="text-align:center"><img src="assets/loading.gif" width=50 height=50></div>`;
+  divResults.innerHTML = `<div style="text-align:center"><img src="assets/loading.gif" width=50 height=50></div>`;
 
   setTimeout(() => {
-    divResultado.innerHTML= `<div class="precio"> El precio es <span>${resultado.PRICE}</span></div>
-    <div class="info"> El precio más alto del día es: <span>${resultado.HIGHDAY}</span></div>
-    <div class="info"> El precio más bajo del día es: <span>${resultado.LOWDAY}</span></div>
-    <div class="info"> Variación últimas 24 horas: <span>${resultado.CHANGEPCT24HOUR}</span></div>
-    <div class="info"> Última actualización: <span>${resultado.LASTUPDATE}</span></div>
+    divResults.innerHTML= `<div class="precio"> El precio es: <span>${results.PRICE}</span></div>
+    <div class="info"> El precio más alto del día es: <span>${results.HIGHDAY}</span></div>
+    <div class="info"> El precio más bajo del día es: <span>${results.LOWDAY}</span></div>
+    <div class="info"> Variación últimas 24 horas: <span>${results.CHANGEPCT24HOUR}</span></div>
+    <div class="info"> Última actualización: <span>${results.LASTUPDATE}</span></div>
     `;
   },2000);
 }
 
-const mostrarError = (elemento, mensaje) => {
-  divError = document.querySelector(elemento);
-  divError.innerHTML=`<p class="red darken-4 error">${mensaje}</p>`;
+const showError = (elements, message) => {
+  divError = document.querySelector(elements);
+  divError.innerHTML=`<p class="red darken-4 error">${message}</p>`;
   setTimeout(() => { divError.innerHTML=``;},2000);
 }
