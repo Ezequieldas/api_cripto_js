@@ -13,37 +13,29 @@
   <script src="app.js"></script>
 </head>
 <body onload="cryptoOptions()">
-  <div class="container">
-    <div class="row">
+  <section class="container">
+    <div class="container__box">
         <h1>Cotización de criptomonedas <br>en tiempo real</h1>
-        <form>
-         
-          <label>Elige una moneda</label>
-          <select
-            onChange="quoteCurrency()"
-            id="currency">
+        <form class="box__form">
+          <label class="form__label">Elige una moneda</label>
+          <select onChange="quote()" id="currency">
               <option value=""> Selecciona </option>
               <option value="USD">Dolar USA</option>
               <option value="EUR">Euro</option>
               <option value="GBP">Libra Esterlina</option>
               <option value="COP">Peso colombiano</option>
           </select>
-          <label>Elige una criptomoneda</label>
-          <select
-            onChange="quoteCurrency()"
-            id="cryptocurrency">
+          <label class="form__label">Elige una criptomoneda</label>
+          <select onChange="quote()" id="cryptocurrency">
           </select>
-          <button 
-            type="button"
-            class="button"
-            onclick="quoteCurrency()">
+          <button class="form__button" type="button" onclick="quoteCurrency()" id="myButton">
             Calcular
           </button>
-          <div id="msj-error"></div>
+          <div id="form__error"></div>
         </form>
         <div class="results" id="divResults"></div>
       </div>
-    </div>
+    </section>
   </div>
 </body>
 </html>
